@@ -3,46 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Retro 16-Bits</title>
+    <title>Menu Style Arborescence</title>
     <style>
-        @font-face {
-            font-family: 'Pixelated';
-            src: url('pixelated.ttf') format('truetype'); /* Assurez-vous d'avoir le fichier de police */
-        }
-
         body {
             background-color: black;
-            color: lime;
-            font-family: 'Pixelated', sans-serif;
+            color: white;
+            font-family: 'Courier New', monospace;
             font-size: 14px;
-            text-align: center;
+            text-align: left;
+            padding: 20px;
         }
         ul {
             list-style-type: none;
-            padding: 0;
+            padding-left: 20px;
         }
         li {
             cursor: pointer;
-            padding: 5px;
-            background-color: darkgreen;
-            border: 2px solid lime;
-            margin-bottom: 5px;
+            position: relative;
         }
-        li:hover {
-            background-color: lime;
-            color: darkgreen;
+        li::before {
+            content: '▸'; /* Flèche fermée */
+            position: absolute;
+            left: -20px;
+            color: lime;
+        }
+        li.open::before {
+            content: '▾'; /* Flèche ouverte */
         }
         .submenu {
             display: none;
         }
-        .menu-item:hover .submenu {
+        li.open > .submenu {
             display: block;
         }
     </style>
+    <script>
+        function toggleMenu(event) {
+            const listItem = event.target;
+            if (listItem.classList.contains('menu-item')) {
+                listItem.classList.toggle('open');
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>Bienvenue dans le Monde 16-Bits</h1>
-    <ul>
+    <h1 style="color: lime;">Menu Arborescence</h1>
+    <ul onclick="toggleMenu(event)">
         <li class="menu-item">News</li>
         <li class="menu-item">Chiptunes
             <ul class="submenu">
