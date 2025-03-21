@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu fixe</title>
+    <title>Site avec Menu Fixe</title>
     <style>
         @font-face {
             font-family: 'Pixel';
@@ -18,17 +18,12 @@
             background-color: #333;
             color: white;
             padding: 10px 20px;
-            position: fixed; /* Fixe le menu en haut */
+            position: fixed; /* Fixe le menu */
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
         nav ul {
             list-style: none;
@@ -37,7 +32,6 @@
             display: flex;
         }
         nav ul li {
-            position: relative;
             margin: 0 15px;
         }
         nav ul li a {
@@ -48,31 +42,8 @@
         nav ul li a:hover {
             color: #f4a261;
         }
-        nav ul li ul {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #333;
-            padding: 10px;
-            list-style: none;
-            margin: 0;
-            display: none;
-        }
-        nav ul li:hover ul {
-            display: block;
-        }
-        nav ul li ul li {
-            margin: 5px 0;
-        }
-        nav ul li ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        nav ul li ul li a:hover {
-            color: #f4a261;
-        }
         main {
-            margin-top: 80px; /* Ajout pour ne pas que le contenu chevauche le menu */
+            margin-top: 80px; /* Évite que le contenu chevauche le menu */
             padding: 20px;
         }
     </style>
@@ -81,23 +52,35 @@
     <header>
         <nav>
             <ul>
-                <li><a href="news.html">News</a></li>
-                <li>
-                    <a href="#chiptunes">Chiptunes</a>
-                    <ul>
-                        <li><a href="#creations">Créations</a></li>
-                        <li><a href="#arkos">Arkos Tracker</a></li>
-                        <li><a href="#docs">Docs</a></li>
-                    </ul>
-                </li>
-                <li><a href="#code">Code</a></li>
-                <li><a href="#gfx">GFX</a></li>
+                <li><a href="#" onclick="loadContent('news.html')">News</a></li>
+                <li><a href="#" onclick="loadContent('chiptunes.html')">Chiptunes</a></li>
+                <li><a href="#" onclick="loadContent('code.html')">Code</a></li>
+                <li><a href="#" onclick="loadContent('gfx.html')">GFX</a></li>
             </ul>
         </nav>
     </header>
-    <main>
+    <main id="content">
         <h2>Bienvenue sur mon site</h2>
         <p>Contenu principal ici...</p>
     </main>
+
+    <script>
+        function loadContent(page) {
+            // Utilisation de Fetch API pour charger dynamiquement le contenu
+            fetch(page)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erreur lors du chargement de la page : " + page);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('content').innerHTML = data;
+                })
+                .catch(error => {
+                    document.getElementById('content').innerHTML = `<p style="color:red;">${error.message}</p>`;
+                });
+        }
+    </script>
 </body>
 </html>
