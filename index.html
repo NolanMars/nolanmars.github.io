@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site avec Menu Fixe</title>
+    <title>Site avec Menu Fixe et Chargement AJAX</title>
     <style>
         @font-face {
             font-family: 'Pixel';
@@ -18,7 +18,7 @@
             background-color: #333;
             color: white;
             padding: 10px 20px;
-            position: fixed; /* Fixe le menu */
+            position: fixed; /* Menu fixe */
             top: 0;
             left: 0;
             width: 100%;
@@ -33,6 +33,7 @@
         }
         nav ul li {
             margin: 0 15px;
+            position: relative;
         }
         nav ul li a {
             color: white;
@@ -42,8 +43,31 @@
         nav ul li a:hover {
             color: #f4a261;
         }
+        nav ul li ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #333;
+            display: none;
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+        nav ul li ul li {
+            margin: 5px 0;
+        }
+        nav ul li ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        nav ul li ul li a:hover {
+            color: #f4a261;
+        }
         main {
-            margin-top: 80px; /* Évite que le contenu chevauche le menu */
+            margin-top: 80px; /* Laisse un espace sous le menu */
             padding: 20px;
         }
     </style>
@@ -53,7 +77,14 @@
         <nav>
             <ul>
                 <li><a href="#" onclick="loadContent('news.html')">News</a></li>
-                <li><a href="#" onclick="loadContent('chiptunes.html')">Chiptunes</a></li>
+                <li>
+                    <a href="#">Chiptunes</a>
+                    <ul>
+                        <li><a href="#" onclick="loadContent('creations.html')">Créations</a></li>
+                        <li><a href="#" onclick="loadContent('arkos.html')">Arkos Tracker</a></li>
+                        <li><a href="#" onclick="loadContent('docs.html')">Docs</a></li>
+                    </ul>
+                </li>
                 <li><a href="#" onclick="loadContent('code.html')">Code</a></li>
                 <li><a href="#" onclick="loadContent('gfx.html')">GFX</a></li>
             </ul>
@@ -66,7 +97,7 @@
 
     <script>
         function loadContent(page) {
-            // Utilisation de Fetch API pour charger dynamiquement le contenu
+            // Utilise l'API Fetch pour charger dynamiquement le contenu
             fetch(page)
                 .then(response => {
                     if (!response.ok) {
