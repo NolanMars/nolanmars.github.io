@@ -3,61 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Style Arborescence</title>
+    <title>Menu avec la police Pixel</title>
     <style>
+        @font-face {
+            font-family: 'Pixel';
+            src: url('fonts/Pixel.ttf') format('truetype');
+        }
         body {
-            background-color: black;
+            font-family: 'Pixel', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
             color: white;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            text-align: left;
-            padding: 20px;
+            padding: 10px 20px;
         }
-        ul {
-            list-style-type: none;
-            padding-left: 20px;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        li {
-            cursor: pointer;
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
             position: relative;
+            margin: 0 15px;
         }
-        li::before {
-            content: '▸'; /* Flèche fermée */
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #f4a261;
+        }
+        nav ul li ul {
             position: absolute;
-            left: -20px;
-            color: lime;
-        }
-        li.open::before {
-            content: '▾'; /* Flèche ouverte */
-        }
-        .submenu {
+            top: 100%;
+            left: 0;
+            background-color: #333;
+            padding: 10px;
+            list-style: none;
+            margin: 0;
             display: none;
         }
-        li.open > .submenu {
+        nav ul li:hover ul {
             display: block;
         }
-    </style>
-    <script>
-        function toggleMenu(event) {
-            const listItem = event.target;
-            if (listItem.classList.contains('menu-item')) {
-                listItem.classList.toggle('open');
-            }
+        nav ul li ul li {
+            margin: 5px 0;
         }
-    </script>
+        nav ul li ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        nav ul li ul li a:hover {
+            color: #f4a261;
+        }
+    </style>
 </head>
 <body>
-    <h1 style="color: lime;">Menu Arborescence</h1>
-    <ul onclick="toggleMenu(event)">
-        <li class="menu-item">News</li>
-        <li class="menu-item">Chiptunes
-            <ul class="submenu">
-                <li>AY-3</li>
-                <li>Arkos Tracker</li>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#news">News</a></li>
+                <li>
+                    <a href="#chiptunes">Chiptunes</a>
+                    <ul>
+                        <li><a href="#creations">Créations</a></li>
+                        <li><a href="#arkos">Arkos Tracker</a></li>
+                        <li><a href="#docs">Docs</a></li>
+                    </ul>
+                </li>
+                <li><a href="#code">Code</a></li>
+                <li><a href="#gfx">GFX</a></li>
             </ul>
-        </li>
-        <li class="menu-item">GFX</li>
-        <li class="menu-item">Code</li>
-    </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Bienvenue sur mon site</h2>
+        <p>Contenu principal ici...</p>
+    </main>
 </body>
 </html>
