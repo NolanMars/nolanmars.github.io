@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu avec la police Pixel</title>
+    <title>Menu fixe</title>
     <style>
         @font-face {
             font-family: 'Pixel';
@@ -18,6 +18,12 @@
             background-color: #333;
             color: white;
             padding: 10px 20px;
+            position: fixed; /* Fixe le menu en haut */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
         nav {
             display: flex;
@@ -64,6 +70,10 @@
         }
         nav ul li ul li a:hover {
             color: #f4a261;
+        }
+        main {
+            margin-top: 80px; /* Ajout pour ne pas que le contenu chevauche le menu */
+            padding: 20px;
         }
     </style>
 </head>
