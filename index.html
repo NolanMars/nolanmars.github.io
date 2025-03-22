@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site avec Menu Fixe et Sous-menu Horizontal</title>
+    <title>Site avec Menu Fixe et Chargement AJAX</title>
     <style>
         @font-face {
             font-family: 'Pixel';
@@ -51,11 +51,13 @@
             top: 100%;
             left: 0;
             background-color: #333;
-            display: flex; /* Sous-menu horizontal */
-            flex-direction: row; /* Affiche les éléments en ligne */
+            display: none;
+        }
+        nav ul li:hover ul {
+            display: block;
         }
         nav ul li ul li {
-            margin: 0 10px; /* Espacement entre les éléments */
+            margin: 5px 0;
         }
         nav ul li ul li a {
             color: white;
