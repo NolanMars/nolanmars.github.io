@@ -39,31 +39,33 @@
             color: white;
             text-decoration: none;
             transition: color 0.3s;
-            font-size: 20px; /* Augmente la taille de la police */
+            font-size: 20px; /* Taille de la police */
         }
         nav ul li a:hover {
             color: #f4a261;
         }
         nav ul li ul {
             list-style: none;
-            padding: 0;
+            padding: 10px 15px; /* Ajout de padding pour agrandir les rectangles */
             margin: 0;
             position: absolute;
             top: 100%;
             left: 0;
             background-color: #333;
             display: none;
+            min-width: 180px; /* Largeur minimale pour agrandir les rectangles */
+            border: 1px solid #f4a261; /* Ajout d'une bordure pour une meilleure visibilité */
         }
         nav ul li:hover ul {
             display: block;
         }
         nav ul li ul li {
-            margin: 5px 0;
+            margin: 8px 0; /* Espacement vertical plus large entre les sous-rubriques */
         }
         nav ul li ul li a {
             color: white;
             text-decoration: none;
-            font-size: 18px; /* Taille légèrement plus petite pour le sous-menu */
+            font-size: 18px; /* Taille des sous-rubriques */
         }
         nav ul li ul li a:hover {
             color: #f4a261;
