@@ -50,7 +50,8 @@
             margin: 0;
             position: absolute;
             top: 100%;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%); /* Centre horizontalement le sous-menu */
             background-color: #333;
             display: none;
             min-width: 180px; /* Largeur minimale pour agrandir les rectangles */
@@ -102,6 +103,7 @@
     <script>
         function loadContent(page) {
             // Utilise l'API Fetch pour charger dynamiquement le contenu
+            document.getElementById('content').innerHTML = '<p>Chargement en cours…</p>';
             fetch(page)
                 .then(response => {
                     if (!response.ok) {
@@ -113,7 +115,10 @@
                     document.getElementById('content').innerHTML = data;
                 })
                 .catch(error => {
-                    document.getElementById('content').innerHTML = `<p style="color:red;">${error.message}</p>`;
+                    document.getElementById('content').innerHTML = `
+                        <p style="color:red;">${error.message}</p>
+                        <button onclick="loadContent('${page}')">Réessayer</button>
+                    `;
                 });
         }
     </script>
