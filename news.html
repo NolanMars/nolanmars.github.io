@@ -1,1 +1,58 @@
-Hello !
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texte Animé</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #282c34;
+            color: white;
+        }
+        #animated-text {
+            font-size: 24px;
+            white-space: pre-wrap;
+            overflow: hidden;
+            border-right: 2px solid white;
+            width: 0;
+            animation: typing 4s steps(30, end), blink 0.6s step-end infinite;
+        }
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 20ch; /* Ajustez la largeur selon la longueur du texte */
+            }
+        }
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="animated-text"></div>
+    <script>
+        const text = "Bienvenue sur mon site animé !";
+        let index = 0;
+
+        function typeLetter() {
+            if (index < text.length) {
+                document.getElementById('animated-text').textContent += text.charAt(index);
+                index++;
+                setTimeout(typeLetter, 100); // Ajustez la vitesse de frappe
+            }
+        }
+
+        typeLetter();
+    </script>
+</body>
+</html>
