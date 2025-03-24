@@ -50,12 +50,13 @@
             margin: 0;
             position: absolute;
             top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
             background-color: #333;
             display: none;
-            min-width: 140px;
+            min-width: 200px;
             border: 1px solid #f4a261;
+            overflow: hidden;
+            z-index: 1000;
         }
         nav ul li:hover ul {
             display: block;
@@ -81,9 +82,10 @@
             background: #333;
             border: 1px solid #f4a261;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             color: white;
             font-size: 16px;
+            max-width: 250px;
+            overflow: hidden;
         }
         nav ul li:hover #radioPlayer {
             display: block;
