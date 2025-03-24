@@ -18,7 +18,7 @@
             background-color: #333;
             color: white;
             padding: 10px 20px;
-            position: fixed; /* Menu fixe */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -32,21 +32,21 @@
             display: flex;
         }
         nav ul li {
-            margin: 0 35px; /* Espacement entre les rubriques */
+            margin: 0 35px;
             position: relative;
         }
         nav ul li a {
             color: white;
             text-decoration: none;
             transition: color 0.3s;
-            font-size: 20px; /* Taille de la police */
+            font-size: 20px;
         }
         nav ul li a:hover {
             color: #f4a261;
         }
         nav ul li ul {
             list-style: none;
-            padding: 5px 10px; /* Réduit l'espace interne */
+            padding: 5px 10px;
             margin: 0;
             position: absolute;
             top: 100%;
@@ -54,51 +54,39 @@
             transform: translateX(-50%);
             background-color: #333;
             display: none;
-            min-width: 140px; /* Réduit la largeur minimale */
+            min-width: 140px;
             border: 1px solid #f4a261;
         }
         nav ul li:hover ul {
             display: block;
         }
         nav ul li ul li {
-            margin: 5px 0; /* Espacement vertical entre les sous-rubriques */
+            margin: 5px 0;
         }
         nav ul li ul li a {
             color: white;
             text-decoration: none;
-            font-size: 16px; /* Taille légèrement réduite pour les sous-rubriques */
+            font-size: 16px;
         }
         nav ul li ul li a:hover {
             color: #f4a261;
         }
         main {
-            margin-top: 80px; /* Laisse un espace sous le menu */
+            margin-top: 80px;
             padding: 20px;
         }
-        /* Styles pour le lecteur radio */
         #radioPlayer {
             display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+            padding: 10px;
             background: #333;
-            padding: 15px;
             border: 1px solid #f4a261;
             border-radius: 5px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
-        #radioPlayer h3 {
-            margin: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             color: white;
-            font-size: 18px;
+            font-size: 16px;
         }
-        #radioPlayer button {
-            background: #f4a261;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 3px;
+        nav ul li:hover #radioPlayer {
+            display: block;
         }
     </style>
 </head>
@@ -124,7 +112,16 @@
                 </li>
                 <li><a href="#" onclick="loadContent('gfx.html')">GFX</a></li>
                 <li style="margin-left: auto;">
-                    <a href="#" onclick="toggleRadio()">Radio</a>
+                    <a href="#">Radio</a>
+                    <ul>
+                        <li id="radioPlayer">
+                            <h3>Nectarine Radio</h3>
+                            <audio controls autoplay>
+                                <source src="https://scenestream.io/necta64.ogg" type="audio/ogg">
+                                Votre navigateur ne supporte pas ce lecteur audio.
+                            </audio>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>
@@ -133,15 +130,6 @@
         <h2>Bienvenue sur mon site</h2>
         <p>Contenu principal ici...</p>
     </main>
-
-    <div id="radioPlayer">
-        <h3>Nectarine Radio</h3>
-        <audio controls autoplay>
-            <source src="https://scenestream.io/necta64.ogg" type="audio/ogg">
-            Votre navigateur ne supporte pas ce lecteur audio.
-        </audio>
-        <button onclick="toggleRadio()">Fermer</button>
-    </div>
 
     <script>
         function loadContent(page) {
@@ -162,15 +150,6 @@
                         <button onclick="loadContent('${page}')">Réessayer</button>
                     `;
                 });
-        }
-
-        function toggleRadio() {
-            const player = document.getElementById('radioPlayer');
-            if (player.style.display === 'none' || player.style.display === '') {
-                player.style.display = 'block';
-            } else {
-                player.style.display = 'none';
-            }
         }
     </script>
 </body>
