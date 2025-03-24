@@ -75,6 +75,31 @@
             margin-top: 80px; /* Laisse un espace sous le menu */
             padding: 20px;
         }
+        /* Styles pour le lecteur radio */
+        #radioPlayer {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            padding: 15px;
+            border: 1px solid #f4a261;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        #radioPlayer h3 {
+            margin: 0;
+            color: white;
+            font-size: 18px;
+        }
+        #radioPlayer button {
+            background: #f4a261;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -98,6 +123,9 @@
                     </ul>
                 </li>
                 <li><a href="#" onclick="loadContent('gfx.html')">GFX</a></li>
+                <li style="margin-left: auto;">
+                    <a href="#" onclick="toggleRadio()">Radio</a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -106,14 +134,22 @@
         <p>Contenu principal ici...</p>
     </main>
 
+    <div id="radioPlayer">
+        <h3>Nectarine Radio</h3>
+        <audio controls autoplay>
+            <source src="https://scenestream.net/demovibes/stream.ogg" type="audio/ogg">
+            Votre navigateur ne supporte pas ce lecteur audio.
+        </audio>
+        <button onclick="toggleRadio()">Fermer</button>
+    </div>
+
     <script>
         function loadContent(page) {
-            // Utilise l'API Fetch pour charger dynamiquement le contenu
             document.getElementById('content').innerHTML = '<p>Chargement en cours…</p>';
             fetch(page)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error("Erreur lors du chargement de la page : " + page);
+                        throw new Error("Erreur lors du chargement de la page : " + page);
                     }
                     return response.text();
                 })
@@ -126,6 +162,15 @@
                         <button onclick="loadContent('${page}')">Réessayer</button>
                     `;
                 });
+        }
+
+        function toggleRadio() {
+            const player = document.getElementById('radioPlayer');
+            if (player.style.display === 'none' || player.style.display === '') {
+                player.style.display = 'block';
+            } else {
+                player.style.display = 'none';
+            }
         }
     </script>
 </body>
