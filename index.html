@@ -53,7 +53,7 @@
             left: 0;
             background-color: #333;
             display: none;
-            min-width: 100%; /* Correspond à la largeur de la rubrique principale */
+            min-width: 100%;
             border: 1px solid #f4a261;
             overflow: hidden;
             z-index: 1000;
@@ -74,8 +74,8 @@
         }
         /* Ajout pour aligner le sous-menu "Radio" à droite */
         nav ul li:last-child ul {
-            left: auto; /* Annule l'alignement par défaut */
-            right: 0; /* Positionne le sous-menu à droite */
+            left: auto;
+            right: 0;
         }
         main {
             margin-top: 80px;
@@ -123,7 +123,7 @@
                     <ul>
                         <li id="radioPlayer">
                             <h3>Nectarine Radio</h3>
-                            <audio controls autoplay>
+                            <audio controls autoplay controlslist="nodownload noremoteplayback novolume">
                                 <source src="https://scenestream.io/necta64.ogg" type="audio/ogg">
                                 Votre navigateur ne supporte pas ce lecteur audio.
                             </audio>
